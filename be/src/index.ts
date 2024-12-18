@@ -1,20 +1,21 @@
+require('dotenv').config()
+
 const express = require('express')
 const path = require('path')
+const configViewEngine = require('~/config/viewEngine')
+const webRoutes = require('~/routes/web')
 
 const app = express()
-const port = 3000
 
-app.set('views', path.join(__dirname, './views/'))
-app.set('view engine', 'ejs')
+const port = process.env.PORT
+const hostname = process.env.HOST_NAME
 
-app.get('/', (_req: any, res: any) => {
-  res.send('Hello World!')
-})
+//config
+configViewEngine(app)
 
-app.get('/ejs', (_req: any, res: any) => {
-  res.render('sample.ejs')
-})
+//router
+app.use('/', webRoutes)
 
-app.listen(port, () => {
+app.listen(port, hostname, () => {
   console.log(`Example app listening on port ${port}`)
 })
