@@ -1,4 +1,4 @@
-import mysql, { ConnectionOptions } from 'mysql2'
+import mysql, { ConnectionOptions } from 'mysql2/promise'
 
 const access: ConnectionOptions = {
   host: process.env.DATABASE_HOST,

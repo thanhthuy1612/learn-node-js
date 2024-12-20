@@ -6,6 +6,11 @@ const webRoutes = require('~/routes/web')
 
 const app = express()
 
+//config req.body
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+//env
 const port = process.env.PORT
 const hostname = process.env.HOST_NAME
 

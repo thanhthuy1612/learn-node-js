@@ -6,8 +6,7 @@ COPY package*.json ./
 
 RUN npm install
 
-RUN npm install typescript @types/node
-RUN npm install prettier eslint-config-prettier eslint-plugin-prettier tsx tsc-alias rimraf nodemon
+RUN npm install typescript @types/node rimraf
 
 COPY . .
 
