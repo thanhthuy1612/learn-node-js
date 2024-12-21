@@ -1,7 +1,7 @@
 Build , ##Ship then Run##
 
 ## lệnh
-docker compose -f mysql.yml -p nodejs-sql up -d
+docker compose -f backend-compose.yam -p nodejs-sql up -d
 
 ## build
 docker build -t <name> .
@@ -17,3 +17,6 @@ docker stop <CONTAINER ID>
 
 ## xóa
 docker rm -f <CONTAINER ID>
+
+## build docker .yml
+docker compose -f backend-compose.yaml -p nodejs-sql up -d --build

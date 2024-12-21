@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  db-mysql:
+    image: mysql:5.7.40
+    restart: always
+    environment:
+      - MYSQL_DATABASE=thanhthuy
+      - MYSQL_ROOT_PASSWORD=123456
+    ports:
+      - "3307:3306"
+    expose:
+     - 3306
+  be-nodejs:
+    build:
+      context: ../../be
+      dockerfile: Dockerfile  
+    restart: unless-stopped
+    depends_on:
+      - db-mysql
+    environment:
+      - DB_HOST=db-mysql
+      - DB_USER=root
+      - DB_PASSWORD=123456
+      - DB_NAME=thanhthuy
+      - HOST=0.0.0.0
+      - DB_PORT=3306
+    ports: 
+     - "8080:8080"
+    stdin_open: true
+    tty: true

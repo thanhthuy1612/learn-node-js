@@ -14,10 +14,10 @@ app.use(express.urlencoded({ extended: true }))
 const port = process.env.PORT
 const hostname = process.env.HOST_NAME
 
-//config
+// //config
 configViewEngine(app)
 
-//router
+// //router
 app.use('/', webRoutes)
 
 app.listen(port, hostname, () => {
