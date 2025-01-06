@@ -4,12 +4,16 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
+const fileUpload = require('express-fileupload')
 
 const configViewEngine = require('~/config/viewEngine')
 const connection = require('~/config/database')
-const userRouter = require('~/routes/user')
+const setRoutes = require('~/routes/routes')
 
 const app = express()
+
+// default options
+app.use(fileUpload())
 
 //config req.body
 app.use(express.json())
@@ -23,11 +27,11 @@ app.use(morgan('common'))
 const port = process.env.PORT
 const hostname = process.env.HOST_NAME
 
-// //config
+//config
 configViewEngine(app)
 
-// //router
-app.use('/v1/api/user', userRouter)
+//router
+setRoutes(app)
 
 //self running function
 ;(async () => {
